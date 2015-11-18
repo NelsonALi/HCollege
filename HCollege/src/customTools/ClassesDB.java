@@ -6,10 +6,10 @@ package customTools;
 	import javax.persistence.EntityTransaction;
 	import javax.persistence.NoResultException;
 	import javax.persistence.TypedQuery;
-	import model.Classes;
+	import model.Hclass;
 
 	public class ClassesDB {
-		public static void insert(Classes aClass) {
+		public static void insert(Hclass aClass) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
@@ -24,7 +24,7 @@ package customTools;
 			}
 		}
 
-		public static void update(Classes aClass) {
+		public static void update(Hclass aClass) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
@@ -39,7 +39,7 @@ package customTools;
 			}
 		}
 
-		public static void delete(Classes aClass) {
+		public static void delete(Hclass aClass) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
@@ -54,11 +54,11 @@ package customTools;
 			}
 		}
 
-		public static ArrayList<Classes> selectAll() {
-			List<Classes> pList = null;
+		public static ArrayList<Hclass> selectAll() {
+			List<Hclass> pList = null;
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
-			String qString = "select e from Classes e";
-			TypedQuery<Classes> q = (TypedQuery<Classes>) em.createQuery(qString, Classes.class);
+			String qString = "select e from Hclass e";
+			TypedQuery<Hclass> q = (TypedQuery<Hclass>) em.createQuery(qString, Hclass.class);
 			try {
 				pList = q.getResultList();
 			} catch (Exception e) {
@@ -66,14 +66,14 @@ package customTools;
 			} finally {
 				em.close();
 			}
-			return  new ArrayList<Classes>( pList);
+			return  new ArrayList<Hclass>( pList);
 		}
 
-		public static ArrayList<Classes> courseBySuject(String subjectCode) {
-			List<Classes> cList = null;
+		public static ArrayList<Hclass> classesBySuject(String subjectCode) {
+			List<Hclass> cList = null;
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
-			String qString = "select e from Product e where e.course.subjectCode=" + subjectCode;
-			TypedQuery<Classes> q = (TypedQuery<Classes>) em.createQuery(qString, Classes.class);
+			String qString = "select e from Hclass e where e.hcourse.subjectcode='" + subjectCode + "'";
+			TypedQuery<Hclass> q = (TypedQuery<Hclass>) em.createQuery(qString, Hclass.class);
 //			TypedQuery<Long> query = em.createQuery("SELECT COUNT(c) FROM DemoCustomer c WHERE c.customerId = 2L", Long.class);
 			try {
 				cList = q.getResultList();
@@ -82,16 +82,14 @@ package customTools;
 			} finally {
 				em.close();
 			}
-			return  new ArrayList<Classes>(cList);
+			return  new ArrayList<Hclass>(cList);
 		}	 
-/*		DB design missing Dept_Id FK
-		public static ArrayList<Class> courseByDept(String Dept) {
-			List<Class> cList = null;
+
+		public static ArrayList<Hclass> classesByDept(String departName) {
+			List<Hclass> cList = null;
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
-			EntityTransaction trans = em.getTransaction();
-			String qString = "select e from Product e where e.Dept_Id=" + Dept;
-			TypedQuery<Class> q = (TypedQuery<Class>) em.createQuery(qString, Class.class);
-//			TypedQuery<Long> query = em.createQuery("SELECT COUNT(c) FROM DemoCustomer c WHERE c.customerId = 2L", Long.class);
+			String qString = "select e from Hclass e where e.hcourse.hdepartment.departname='" + departName + "'";
+			TypedQuery<Hclass> q = (TypedQuery<Hclass>) em.createQuery(qString, Hclass.class);
 			try {
 				cList = q.getResultList();
 			} catch (Exception e) {
@@ -99,6 +97,36 @@ package customTools;
 			} finally {
 				em.close();
 			}
-			return  new ArrayList<Class>(cList);
-		}	 */
-}
+			return  new ArrayList<Hclass>(cList);
+		}	
+
+		public static ArrayList<Hclass> classesByInstructor(String instructorName) {
+			List<Hclass> cList = null;
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			String qString = "select e from Hclass e where e.hinstructor.instructorname='" + instructorName + "'";
+			TypedQuery<Hclass> q = (TypedQuery<Hclass>) em.createQuery(qString, Hclass.class);
+			try {
+				cList = q.getResultList();
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				em.close();
+			}
+			return  new ArrayList<Hclass>(cList);
+		}	
+
+		public static ArrayList<Hclass> classesByTime(String classTime) {
+			List<Hclass> cList = null;
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			String qString = "select e from Hclass e where e.hschedule.dow1 like '%" +classTime + "%' or e.hschedule.ampm like '%" + classTime + "%'";
+			TypedQuery<Hclass> q = (TypedQuery<Hclass>) em.createQuery(qString, Hclass.class);
+			try {
+				cList = q.getResultList();
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				em.close();
+			}
+			return  new ArrayList<Hclass>(cList);
+		}	
+	}

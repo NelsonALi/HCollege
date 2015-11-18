@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Classes;
+import model.Hclass;
 import customTools.ClassesDB;
 
 /**
@@ -39,9 +39,23 @@ public class ViewAllClass extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		String viewClassFilter = (String) request.getParameter("viewclassfilter");		
-		ArrayList<Classes> postList = ClassesDB.selectAll();
+		ArrayList<Hclass> postList = new ArrayList<Hclass>();
+		String classFilter = (String) request.getParameter("classfilter");
+		String viewClassFilter = (String) request.getParameter("viewclassfilter");	
+		if (viewClassFilter.equals("All")) {
+			postList = ClassesDB.selectAll();
+		} else if (viewClassFilter.equals("subjectcode")) {
+			postList = ClassesDB.classesBySuject(classFilter);
+		} else if (viewClassFilter.equals("departname")) {
+			postList = ClassesDB.classesByDept(classFilter);
+		} else if (viewClassFilter.equals("instructorname")) {
+			postList = ClassesDB.classesByInstructor(classFilter);
+		} else if (viewClassFilter.equals("classtime")) {
+			postList = ClassesDB.classesByTime(classFilter);
+		}
+
 		request.setAttribute("classList", postList);
 		getServletContext().getRequestDispatcher("/ViewCurrentClasses.jsp").forward(request, response);		
     }
+
 }

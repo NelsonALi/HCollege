@@ -8,15 +8,16 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import model.Huser;
+import model.Hclass;
+import model.Hmajor;
 
-	public class UserDB {
-		public static void insert(Huser anUser) {
+	public class MajorDB {
+		public static void insert(Hmajor aMajor) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
 			try {
-				em.persist(anUser);
+				em.persist(aMajor);
 				trans.commit();
 			} catch (Exception e) {
 				System.out.println(e);
@@ -26,12 +27,12 @@ import model.Huser;
 			}
 		}
 
-		public static void update(Huser anUser) {
+		public static void update(Hmajor aMajor) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
 			try {
-				em.merge(anUser);
+				em.merge(aMajor);
 				trans.commit();
 			} catch (Exception e) {
 				System.out.println(e);
@@ -41,12 +42,12 @@ import model.Huser;
 			}
 		}
 
-		public static void delete(Huser anUser) {
+		public static void delete(Hmajor aMajor) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
 			try {
-				em.remove(em.merge(anUser));
+				em.remove(em.merge(aMajor));
 				trans.commit();
 			} catch (Exception e) {
 				System.out.println(e);
@@ -56,11 +57,11 @@ import model.Huser;
 			}
 		}
 
-		public static ArrayList<Huser> selectAll() {
-			List<Huser> pList = null;
+		public static ArrayList<Hmajor> selectAll() {
+			List<Hmajor> pList = null;
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
-			String qString = "select e from Huser e";
-			TypedQuery<Huser> q = (TypedQuery<Huser>) em.createQuery(qString, Huser.class);
+			String qString = "select e from Hmajor e";
+			TypedQuery<Hmajor> q = (TypedQuery<Hmajor>) em.createQuery(qString, Hmajor.class);
 			try {
 				pList = q.getResultList();
 			} catch (Exception e) {
@@ -68,6 +69,21 @@ import model.Huser;
 			} finally {
 				em.close();
 			}
-			return  new ArrayList<Huser>( pList);
+			return  new ArrayList<Hmajor>( pList);
 		}
+
+		public static ArrayList<Hmajor> majorByDept(String departName) {
+			List<Hmajor> cList = null;
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			String qString = "select e from Hmajor e where e.hdepartment.departname='" + departName + "'";
+			TypedQuery<Hmajor> q = (TypedQuery<Hmajor>) em.createQuery(qString, Hmajor.class);
+			try {
+				cList = q.getResultList();
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				em.close();
+			}
+			return  new ArrayList<Hmajor>(cList);
+		}	
 }

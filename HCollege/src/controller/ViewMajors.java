@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import customTools.CourseDB;
-import model.Hcourse;
+import model.Hmajor;
+import customTools.MajorDB;
 
 /**
- * Servlet implementation class ViewAllCourse
+ * Servlet implementation class ViewAllClass
  */
-@WebServlet("/ViewAllCourse")
-public class ViewAllCourse extends HttpServlet {
+@WebServlet("/ViewMajors")
+public class ViewMajors extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewAllCourse() {
+    public ViewMajors() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,9 +39,17 @@ public class ViewAllCourse extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		String viewCourseFilter = (String) request.getParameter("viewcoursefilter");		
-		ArrayList<Hcourse> postList = CourseDB.selectAll();
-		request.setAttribute("courseList", postList);
-		getServletContext().getRequestDispatcher("/ViewAllCourse.jsp").forward(request, response);		
-        }
+		ArrayList<Hmajor> postList = new ArrayList<Hmajor>();
+		String classFilter = (String) request.getParameter("classfilter");
+		String viewClassFilter = (String) request.getParameter("viewclassfilter");	
+		if (viewClassFilter.equals("All")) {
+			postList = MajorDB.selectAll();
+		} else if (viewClassFilter.equals("departname")) {
+			postList = MajorDB.majorByDept(classFilter);
+		}
+
+		request.setAttribute("majorList", postList);
+		getServletContext().getRequestDispatcher("/ViewMajors.jsp").forward(request, response);		
+    }
 }
+

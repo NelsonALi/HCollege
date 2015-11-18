@@ -5,10 +5,10 @@ package customTools;
 	import javax.persistence.EntityTransaction;
 	import javax.persistence.NoResultException;
 	import javax.persistence.TypedQuery;
-	import model.Course;
+	import model.Hcourse;
 
 	public class CourseDB {
-		public static void insert(Course aCourse) {
+		public static void insert(Hcourse aCourse) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
@@ -23,7 +23,7 @@ package customTools;
 			}
 		}
 
-		public static void update(Course aCourse) {
+		public static void update(Hcourse aCourse) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
@@ -38,7 +38,7 @@ package customTools;
 			}
 		}
 
-		public static void delete(Course aCourse) {
+		public static void delete(Hcourse aCourse) {
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
 			trans.begin();
@@ -53,11 +53,11 @@ package customTools;
 			}
 		}
 
-		public static ArrayList<Course> selectAll() {
-			List<Course> pList = null;
+		public static ArrayList<Hcourse> selectAll() {
+			List<Hcourse> pList = null;
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
-			String qString = "select e from Course e";
-			TypedQuery<Course> q = (TypedQuery<Course>) em.createQuery(qString, Course.class);
+			String qString = "select e from Hcourse e";
+			TypedQuery<Hcourse> q = (TypedQuery<Hcourse>) em.createQuery(qString, Hcourse.class);
 			try {
 				pList = q.getResultList();
 			} catch (Exception e) {
@@ -65,15 +65,15 @@ package customTools;
 			} finally {
 				em.close();
 			}
-			return  new ArrayList<Course>( pList);
+			return  new ArrayList<Hcourse>( pList);
 		}
 
-		public static ArrayList<Course> courseBySuject(String subject) {
-			List<Course> cList = null;
+		public static ArrayList<Hcourse> courseBySuject(String subjectCode) {
+			List<Hcourse> cList = null;
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 			EntityTransaction trans = em.getTransaction();
-			String qString = "select e from Product e where e.Subject_Code=" + subject;
-			TypedQuery<Course> q = (TypedQuery<Course>) em.createQuery(qString, Course.class);
+			String qString = "select e from Hcourse e where e.subjectcode=" + subjectCode;
+			TypedQuery<Hcourse> q = (TypedQuery<Hcourse>) em.createQuery(qString, Hcourse.class);
 //			TypedQuery<Long> query = em.createQuery("SELECT COUNT(c) FROM DemoCustomer c WHERE c.customerId = 2L", Long.class);
 			try {
 				cList = q.getResultList();
@@ -82,7 +82,7 @@ package customTools;
 			} finally {
 				em.close();
 			}
-			return  new ArrayList<Course>(cList);
+			return  new ArrayList<Hcourse>(cList);
 		}	 
 /*		DB design missing Dept_Id FK
 		public static ArrayList<Course> courseByDept(String Dept) {
