@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -16,8 +18,8 @@ public class Hmajor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HMAJOR_MAJORCODE_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HMAJOR_MAJORCODE_GENERATOR")
+	 @SequenceGenerator( name = "HMAJOR_SEQ", sequenceName = "HMAJOR_SEQ", allocationSize = 1 )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HMAJOR_SEQ")
 	private long majorcode;
 
 	private String majorname;

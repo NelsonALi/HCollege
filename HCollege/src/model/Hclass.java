@@ -18,9 +18,10 @@ import java.util.List;
 public class Hclass implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+
 	@Id
-	@SequenceGenerator(name="HCLASS_CLASSNUM_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCLASS_CLASSNUM_GENERATOR")
+	 @SequenceGenerator( name = "HCLASS_SEQ", sequenceName = "HCLASS_SEQ", allocationSize = 1 )
+	 @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "HCLASS_SEQ" )
 	private long classnum;
 
 	private String crn;

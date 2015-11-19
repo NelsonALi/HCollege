@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -14,10 +16,9 @@ import java.util.List;
 @NamedQuery(name="Hdepartment.findAll", query="SELECT h FROM Hdepartment h")
 public class Hdepartment implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	@SequenceGenerator(name="HDEPARTMENT_CODE_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HDEPARTMENT_CODE_GENERATOR")
+	 @SequenceGenerator( name = "HDEPARTMENT_SEQ", sequenceName = "HDEPARTMENT_SEQ", allocationSize = 1 )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HDEPARTMENT_SEQ")
 	private long code;
 
 	private String departname;

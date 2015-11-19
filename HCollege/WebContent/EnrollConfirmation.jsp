@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Enroll Class</title>
+<title>Harrison College Sit</title>
 <jsp:include page="./header.jsp" />
 </head>
 <body>
@@ -14,9 +14,9 @@
 	<jsp:include page="./menu.jsp" />
 	<div class="container">
 		<div class="jumbotron">
-			<form role="form" action="ViewAllClass" method="post">
+			<form role="form">
 				<p>${loginname}loggedin</p>
-				<p>Enroll by clicking the enroll button for the class</p><br>
+				<p>This is the class you have just enrolled successfully.</p>
 				<table class="table table-bordered">
 					<tr>
 						<th>Class CRN Number</th>
@@ -26,22 +26,18 @@
 						<th>Course Name</th>
 						<th>Room</th>
 						<th>Schedule</th>
-						<th>Current Enrollment Count</th>
-						<th>Enroll Button</th>
+						<th>Enrollment Count</th>
 					</tr>
-					<c:forEach items="${classList}" var="classes">
 						<tr>
-							<td>${classes.crn}</td>
-							<td>${classes.hcourse.subjectcode}</td>
-							<td>${classes.hcourse.hdepartment.departname}</td>
-							<td>${classes.hinstructor.instructorname}</td>
-							<td>${classes.hcourse.coursename}</td>
-							<td>${classes.hclassroom.bldgname} ${classes.hclassroom.roomnumber}</td>
-							<td>${classes.hschedule.dow1} ${classes.hschedule.dow2} at ${classes.hschedule.hour12} ${classes.hschedule.ampm} for ${classes.hschedule.minutes60} minutes</td>
-							<td>${classes.enrollmenthold}</td>
-							<td><a class="btn btn-default"	href="Enroll?classId=${classes.classnum}" role="button">${classes.classnum}</a></td>
+							<td>${theclass.crn}</td>
+							<td>${theclass.hcourse.subjectcode}</td>
+							<td>${theclass.hcourse.hdepartment.departname}</td>
+							<td>${theclass.hinstructor.instructorname}</td>
+							<td>${theclass.hcourse.coursename}</td>
+							<td>${theclass.hclassroom.bldgname} ${theclass.hclassroom.roomnumber}</td>
+							<td>${theclass.hschedule.dow1} ${theclass.hschedule.dow2} at ${theclass.hschedule.hour12} ${theclass.hschedule.ampm} for ${theclass.hschedule.minutes60} minutes</td>
+							<td>${theclass.enrollmenthold}</td>
 						</tr>
-					</c:forEach>
 				</table>
 			</form>
 		</div>

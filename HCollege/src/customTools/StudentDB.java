@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+
 import model.Hstudent;
 import model.Hclass;
 import model.Henrollment;
@@ -71,6 +72,21 @@ public class StudentDB {
 			}
 			return  new ArrayList<Hstudent>( pList);
 		}
+
+		public static Hstudent getStudentByName(String studentName) {
+			Hstudent cList = null;
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			String qString = "select e from Hstudent e where e.studentname='" + studentName + "'";
+			TypedQuery<Hstudent> q = (TypedQuery<Hstudent>) em.createQuery(qString, Hstudent.class);
+			try {
+				cList = q.getSingleResult();
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				em.close();
+			}
+			return  cList;
+		}	 
 
 		public static ArrayList<Hstudent> majorByDept(String departName) {
 			List<Hstudent> cList = null;

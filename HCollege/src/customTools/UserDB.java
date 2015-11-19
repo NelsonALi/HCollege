@@ -70,4 +70,33 @@ import model.Huser;
 			}
 			return  new ArrayList<Huser>( pList);
 		}
-}
+		public static boolean isAdmin(String loginName) {
+			boolean admin = false;
+			Huser huser = getHuserByName(loginName);
+/*			if (huser != null) {
+				if(huser.getAdminrole().intValue()>0) admin = true;
+			}
+*/			return admin ;
+		}
+		public static boolean huserExist(String loginName) {
+			boolean exist = false;
+			Huser todoer = getHuserByName(loginName);
+			if (todoer != null) exist = true;
+			return exist ;
+		}
+		public static Huser getHuserByName(String loginName) {
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			String qString = "select e from Huser e where e.netid = :loginName";
+			TypedQuery<Huser> q = (TypedQuery<Huser>) em.createQuery(qString, Huser.class);
+			q.setParameter("loginName", loginName);
+			Huser todoer = null;
+			try {
+				todoer = q.getSingleResult();
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				em.close();
+			}
+			return todoer ;
+		}
+	}

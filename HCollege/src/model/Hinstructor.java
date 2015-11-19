@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -15,8 +17,8 @@ public class Hinstructor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HINSTRUCTOR_INSTRUCTORNUM_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HINSTRUCTOR_INSTRUCTORNUM_GENERATOR")
+	 @SequenceGenerator( name = "HINSTRUCTOR_SEQ", sequenceName = "HINSTRUCTOR_SEQ", allocationSize = 1 )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HINSTRUCTOR_SEQ")
 	private long instructornum;
 
 	private String instructorname;

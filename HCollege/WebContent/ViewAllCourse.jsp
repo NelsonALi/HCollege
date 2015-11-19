@@ -18,10 +18,10 @@
 				<p>${loginname}loggedin</p>
 				<p>Select Course List filtering Criteria</p>
 				<div class="radio-inline">
-					<label><input type="radio" name="viewclassfilter">All</label>
+					<label><input type="radio" name="viewclassfilter" onclick = \"getAnswer('All') value="All">All</label>
 				</div>
 				<div class="radio-inline">
-					<label><input type="radio" name="viewclassfilter">By
+					<label><input type="radio" name="viewclassfilter" onclick = \"getAnswer('departname') value="departname">By
 						Department</label>
 				</div>
 				<br>

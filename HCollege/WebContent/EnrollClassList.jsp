@@ -16,6 +16,7 @@
 		<div class="jumbotron">
 			<form role="form" action="ViewAllClass" method="post">
 				<p>${loginname}loggedin</p>
+				${Message}
 				<p>Enroll by clicking the enroll button for the class</p><br>
 				<table class="table table-bordered">
 					<tr>
@@ -27,7 +28,7 @@
 						<th>Room</th>
 						<th>Schedule</th>
 						<th>Current Enrollment Count</th>
-						<th>Enroll Button</th>
+						<th>Class Id Button</th>
 					</tr>
 					<c:forEach items="${classList}" var="classes">
 						<tr>

@@ -8,14 +8,14 @@
 			<ul class="nav navbar-nav">
 				<li><a href="login.jsp">Login</a></li>
 				<li><a href="register.jsp">Register</a></li>
-				<li><a href="EnrollClass.jsp">Enroll Class (Student only)</a></li>
+				<li><a href="EnrollClassList">Enroll Class (Student only)</a></li>
 				<li><a href="DropCalss.jsp">Drop Class (Student only)</a></li>			
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">View Actions <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="ViewAllCourse.jsp">View Courses</a></li>
-						<li><a href="ViewAllClass.jsp">View Classes</a></li>
+						<li><a href="ViewCurrentClasses.jsp">View Classes</a></li>
 						<li><a href="ViewMajors.jsp">View Majors by Department</a></li>
 						<li><a href="ViewSchedule">View Class Schedule</a></li>						
 						<li role="separator" class="divider"></li>
@@ -48,6 +48,7 @@
 					</ul></li>					
 				<li><a href="UpdateRole.jsp">Change Person Role Type</a></li>			
 				<li><a href="UpdateRoomMax.jsp">Reset Room Capacity</a></li>			
+				<li><a href="logout.jsp">Log Out</a></li>			
 			</ul>
 		</div>
 	</div>

@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -16,8 +18,8 @@ public class Hcourse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCOURSE_COURSECODE_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCOURSE_COURSECODE_GENERATOR")
+	 @SequenceGenerator( name = "HCOURSE_SEQ", sequenceName = "HCOURSE_SEQ", allocationSize = 1 )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCOURSE_SEQ")
 	private long coursecode;
 
 	private String coursename;

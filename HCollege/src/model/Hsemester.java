@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -16,8 +18,8 @@ public class Hsemester implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HSEMESTER_SEMESTERCODE_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HSEMESTER_SEMESTERCODE_GENERATOR")
+	 @SequenceGenerator( name = "HSEMESTER_SEQ", sequenceName = "HSEMESTER_SEQ", allocationSize = 1 )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HSEMESTER_SEQ")
 	private long semestercode;
 
 	private BigDecimal hyear;

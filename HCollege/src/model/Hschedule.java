@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -16,8 +18,8 @@ public class Hschedule implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HSCHEDULE_SCHEDULECODE_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HSCHEDULE_SCHEDULECODE_GENERATOR")
+	 @SequenceGenerator( name = "HSCHEDULE_SEQ", sequenceName = "HSCHEDULE_SEQ", allocationSize = 1 )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HSCHEDULE_SEQ")
 	private long schedulecode;
 
 	private String ampm;

@@ -69,6 +69,21 @@ package customTools;
 			return  new ArrayList<Hclass>( pList);
 		}
 
+		public static Hclass getClassById(String classID) {
+			Hclass cList = null;
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			String qString = "select e from Hclass e where e.classnum='" + classID + "'";
+			TypedQuery<Hclass> q = (TypedQuery<Hclass>) em.createQuery(qString, Hclass.class);
+			try {
+				cList = q.getSingleResult();
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				em.close();
+			}
+			return  cList;
+		}	 
+
 		public static ArrayList<Hclass> classesBySuject(String subjectCode) {
 			List<Hclass> cList = null;
 			EntityManager em = DBUtil.getEmFactory().createEntityManager();

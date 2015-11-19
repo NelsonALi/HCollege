@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -14,8 +15,8 @@ public class Henrollment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HENROLLMENT_ENROLLMENTNUM_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HENROLLMENT_ENROLLMENTNUM_GENERATOR")
+	 @SequenceGenerator( name = "HENROLLMENT_SEQ", sequenceName = "HENROLLMENT_SEQ", allocationSize = 1 )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HENROLLMENT_SEQ")
 	private long enrollmentnum;
 
 	private String grade;

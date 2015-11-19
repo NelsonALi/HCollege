@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -16,8 +18,8 @@ public class Hclassroom implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HCLASSROOM_ROOMID_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HCLASSROOM_ROOMID_GENERATOR")
+	 @SequenceGenerator( name = "HCLASSROOM_SEQ", sequenceName = "HCLASSROOM_SEQ", allocationSize = 1 )
+	 @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "HCLASSROOM_SEQ" )
 	private long roomid;
 
 	private String bldgname;
